@@ -1,0 +1,550 @@
+﻿<!DOCTYPE html>
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link href="/style.css" type="text/css"
+          rel="stylesheet" />
+    <script type="text/javascript" src="EventHandler.js"></script>
+
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+            li a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+                li a:hover:not(.active) {
+                    background-color: #111;
+                }
+
+        .active {
+            background-color: #4CAF50;
+        }
+    </style>
+
+
+
+
+</head>
+<body>
+
+
+
+
+	<hr>
+
+    <div class="header">
+        <h1>Big Data - Final Project</h1>
+    </div>
+    <ul>
+        <li><a href="#downloadd">Download Data</a></li>
+        <li><a href="#showd">Show Data</a></li>
+        <li><a href="#predictd">Predict Data</a></li>
+        <li style="float:right"><a class="active" href="#about">About</a></li>
+    </ul>
+
+    <br>
+
+
+
+    <title><%= title %></title>
+
+
+
+
+    <br><br>
+    <br><br>
+
+
+   <center> <img src="police_line.png" alt="line"></center>
+ 
+
+
+
+
+	<hr>
+    <div id="downloadd" class="fixed-top container-fluid>
+
+        <div class="sticky-top">
+            <div class="row justify-content-md-center">
+                <div class="col-md-4">
+
+                    <h2>Download data to Hadoop environment:</h2>
+					<input type="file" id="files" name="files[]" multiple />
+<output id="list"></output>
+
+<br>
+<br>
+
+<script>
+  function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+      // Only process image files.
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          var span = document.createElement('span');
+          span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                            '" title="', escape(theFile.name), '"/>'].join('');
+          document.getElementById('list').insertBefore(span, null);
+		 var file = reader.result;
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+    }
+  }
+
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+</script>
+                    <br>
+                    <button type="button" onclick="alert('Downloading')">Download</button>
+
+                    <br>
+                    <h2>Import the file from HDFS to MongoDB</h2>
+                    <button type="button" onclick="alert('Importing!')">Import</button>
+                    <br>
+
+
+
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+
+        </div>
+
+
+
+
+
+	<hr>
+
+
+	      <div id="showd" class="fixed-top container-fluid>
+
+                    <div class="sticky-top">
+                        <div class="col-md-4">
+
+						<h1>Show data by a context:</h1>
+
+                            <form method="POST" action="/#showd">
+                                Songs that contains this word : <input type="text" id="songname" name="songname" /> <br />
+								<input type="submit" value="Search songs" />
+                                                                       
+                                
+                            </form>
+
+
+                            <br>
+
+                            <table border="1">
+                                <tr>
+                                    <th> Title </th>
+                                    <th> Artist </th>
+                                    <th> Genre  </th>
+
+                                </tr>
+                                <% all.forEach(function(song){ %>
+
+
+                                <tr>
+                                    <td>
+                                        <%=song.title%>
+                                    </td>
+                                    <td>
+                                        <%=song.artist_name%>
+                                    </td>
+                                    <td>
+                                        <%=song.terms%>
+                                    </td>
+                                </tr>
+
+                                <%});%>
+
+
+                            </table>
+
+
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <div id="learnd" class="fixed-top container-fluid>
+
+            <div class="sticky-top">
+                <div class="col-md-4">
+
+      
+
+
+                    <h2>Learn from data and create a model</h2>
+
+
+
+                <button type="button" onclick="alert('Data was learned successfully!')">Learn From Data!</button>
+                   
+
+                   
+                  
+                    
+                    <script>
+                      
+                        var btn = document.getElementById("learnBtn");
+
+                        btn.addEventListener("click", learnFunction);
+
+                       
+
+                    </script>
+
+
+
+
+
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
+                </div>
+            </div>
+
+
+
+
+
+
+			 
+
+
+
+	<hr>
+            <div id="predictd" class="fixed-top container-fluid>
+
+                <div class="sticky-top">
+                    <div class="col-md-4">
+
+                        <h2>Feed new data and predict </h2>
+                <form method="POST" action="/#predictd">
+                                    Title: <input type="text" id="titleName"
+                                                  name="titleName" /> <br />
+                                    Artist: <input type="text" id="artistName"
+                                                   name="artistName" /> <br />
+                                    terms: <input type="text" id="termsName"
+                                                  name="termsName" /> <br />
+                                    <input type="submit" />
+                                </form>
+
+
+						<p><b><u> Predict if this song has content of crime </u></b></p> 
+                  
+                        <h1> Data Prediction answer: <%=isCrime%></h1>
+                       
+             
+
+
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				
+
+
+				            <div id="about" class="fixed-top  container-fluid">
+							
+                <div class="sticky-top">
+                    <div class="col-md-4">
+
+                
+                    <div class="container">
+  <div class="row transparent">
+    <div class="col-md-12">
+    	  <div class="tuyin first">	
+			<span class="title">Big Data Final Project <br>
+							 <p>Tal Malach and Ivan Krasnov © 
+							  </p>
+
+			</span>
+			 <div class="plan-name"></div>
+			  <div class="text" style="background-color: grey">
+			  <p>In this project we took a dataset from the DB of Echo Net company <br>
+			  that contains 10000 songs. We puted this dataset in to the Mongo db and <br>
+			  connected from node js with mangoose to the "mlab". We designed a microservices  <br>
+			  architecture to implement our idea . In the end we needed to learn data and to <br>
+			  show if there is a context between the name of the song to crime crime <br>
+			  
+			  </p>
+			  <br>
+			  			<ul>
+
+
+  <li> During the project we learned to work with :</li><br>
+  <li> * big csv data set</li>
+  <br>
+  <li> * Nosql - mongodb & UI of nosql</li>
+    <br>
+  <li> * Nodejs- ejs, npm</li>
+    <br>
+  <li> * Restfull API</li>
+    <br>
+  <li> * Mean stack</li>
+    <br>
+  <li> * Machine learning - Supervised(decision tree)</li>
+    <br>
+  <li> * HTML5, CSS, JAVASCRIPT, Bootstrap</li>
+    <br>
+  <li> * Hadoop, Hdfs</li>
+    <br>
+  <li> * Docker, Kitematics</li>
+    <br>
+
+</ul>
+			  </div>
+
+			  				<p></p>
+			
+
+		
+		
+		
+
+		  </div>
+		</div>
+  </div>
+  
+</div>
+
+					       </div>
+                </div>
+
+
+	
+
+
+
+<hr>
+            
+ <div class="text" style="background-color: grey">
+			 
+			  
+
+                       
+
+</body>
+
+</html>
